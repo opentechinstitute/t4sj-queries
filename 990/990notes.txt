@@ -1,0 +1,146 @@
+VARIABLES
+
+990s
+CYTYTOTOTREV    Current Year Total Revenue
+CYCYCOCONGRA    total contributions
+CYTYTOTOTEXP    total expenses
+ACTIMISSDESC    ActivityOrMissionDesc
+
+NUMBEREMPLOY -- Number of employees
+VOLUNTEERSOL -- Number of volunteers ?
+
+// current year grants
+CYCYCOCONGRA // all other years
+CONGRACURYEA // 2010
+CONGRAPRIYEA // 2010
+
+---
+// funder <-> grants 990PF
+SIGOCGOCPURP    /Return/ReturnData/IRS990PF/SupplementaryInformationGrp/GrantOrContributionPdDurYrGrp/GrantOrContributionPurposeTxt
+SIGOCPYAMOUN    /Return/ReturnData/IRS990PF/SupplementaryInformation/GrantOrContriPaidDuringYear/Amount
+SIGOCRBNBNLI1       /Return/ReturnData/IRS990PF/SupplementaryInformationGrp/GrantOrContributionPdDurYrGrp/RecipientBusinessName/BusinessNameLine1Txt
+
+---
+SIGOCAFFGOCP        /Return/ReturnData/IRS990PF/SupplementaryInformationGrp/GrantOrContriApprvForFutGrp/GrantOrContributionPurposeTxt
+
+----
+DESCOFPUPURP
+EXPLANATIONX
+EXPLANTEXTEX
+
+
+
+ROOTKETITLE     Key Officer Title
+
+
+## KEEP
+EIN
+FormType
+ObjectId
+OrganizationName
+TaxPeriod
+value
+version
+xpath
+variable
+form
+part
+scope
+location
+
+## DROP
+DLN
+LastUpdated
+SubmittedOn
+URL
+Analyst
+
+
+
+
+
+
+#################################
+93493049003161,
+591146765,
+990,
+2016-03-21T17:23:53,
+201110499349300316,
+EPISCOPAL CHILDRENS SERVICES INC,
+2011-03-08,
+201006,
+https://s3.amazonaws.com/irs-form-990/201110499349300316_public.xml,
+false,
+2009v1.0,
+/Return/ReturnData/IRS990/GrantToRelatedPerson,
+GRATORRELPER,
+F9,
+PART-04,
+PC,
+F990-PC-PART-04-LINE-27,
+Roman & Pulley
+
+
+DLN,
+EIN,
+FormType,
+LastUpdated,
+ObjectId,
+OrganizationName,
+SubmittedOn,
+TaxPeriod,
+URL,
+value,
+version,
+xpath,
+variable,
+form,
+part,
+scope,
+location,
+analyst
+
+
+DLN 93493111006111,
+EIN 222938952,
+FormType 990,
+LastUpdated 2016-03-21T17:23:53,
+ObjectID 201111119349300611,
+OrgName NORWESCAP HOLDING COMPANY INC,
+SubmittedOn 2011-04-27,
+TaxPeriod 201008,
+URL https://s3.amazonaws.com/irs-form-990/201111119349300611_public.xml,
+value false,
+version 2009v1.0,
+xpath /Return/ReturnData/IRS990/GrantToRelatedPerson,
+variable GRATORRELPER,
+Form F9,
+part PART-04,
+scope PC,
+location F990-PC-PART-04-LINE-27,
+analyst Roman & Pulley
+
+
+
+
+
+bq load -F " " \
+  --quote "" \
+  t4sjproject:irs990 \
+  pagecounts-20160108-110000.gz \
+  language,title,requests:integer,content_size:integer
+
+
+for part in part-000*.csv.gz; do bq load -F "," irs990.alldata $part; done
+
+
+
+bq load -F " " \
+  --quote "" \
+  YourProjectID:lab.pagecounts_20160108_11 \
+  pagecounts-20160108-110000.gz \
+  language,title,requests:integer,content_size:integer
+
+
+
+
