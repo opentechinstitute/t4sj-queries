@@ -1,8 +1,5 @@
 ## jobs notes
 
-ssh nat@nat.opentechinstitute.org
-psql -d jobs -U nat -w eep9iwaeTi -p 5432
-
  jobkey      | character varying(20)  | not null  | extended |              | 
  city        | character varying(100) |           | extended |              | 
  country     | character varying(2)   |           | extended |              | 
