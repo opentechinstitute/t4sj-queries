@@ -28,7 +28,7 @@ FROM (
     SELECT 
         variable,
         count(*) AS num 
-    FROM irs990 
+    FROM t4sjtermresultsnov 
     GROUP BY variable) x
 ORDER BY num DESC
 LIMIT 10; 
@@ -164,7 +164,7 @@ CREATE TABLE table_name
 
 SELECT DISTINCT 
     ein
-    FROM t4sjtermresults;
+    FROM t4sjtermresultsnov;
 
 --- get all variables from irs990 for disctinct orgs
 

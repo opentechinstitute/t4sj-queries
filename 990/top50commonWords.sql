@@ -12,7 +12,7 @@ FROM (
     FROM (
         SELECT 
             regexp_split_to_table(value, E'\\s+') AS term 
-        FROM irs990
+        FROM t4sjtermresultsnov
         WHERE 
             variable LIKE '%DESC%') sub
     WHERE term ~ '[:alpha:]{3,}'
